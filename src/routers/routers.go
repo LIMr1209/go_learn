@@ -67,6 +67,7 @@ func SetupRouter() *gin.Engine {
 			})
 		})
 	}
+	r.GET("goroutine_test", controller.GoRoutineTest)
 
 	return r
 }

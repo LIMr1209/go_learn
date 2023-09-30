@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
 func SayHello(c *gin.Context) {
@@ -139,4 +140,19 @@ func UploadFile(c *gin.Context) {
 
 func Redirect(c *gin.Context) {
 	c.Redirect(http.StatusPermanentRedirect, "http://baidu.com")
+}
+
+func GoRoutineTest(c *gin.Context) {
+	go goroutineTest(c.Copy())
+	c.JSON(http.StatusOK, gin.H{
+		"ok": true,
+	})
+}
+
+func goroutineTest(c *gin.Context) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(5 * time.Second)
+		fmt.Println("-----------")
+	}
+
 }
